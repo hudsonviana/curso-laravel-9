@@ -1,6 +1,7 @@
 <div class="w-full bg-white shadow-md rounded px-8 py-12">
     @csrf
-    <textarea name="body" cols="30" rows="10" placeholder="Comentário" class="form-control
+    <textarea name="body" cols="30" rows="10" placeholder="Comentário" 
+    class="form-control
     block
     w-full
     px-3
@@ -14,11 +15,14 @@
     transition
     ease-in-out
     m-0 
-    focus:text-gray-700 focus:bg-white focus:border-blue-300
-    "></textarea>
+    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">{{ $comment->body ?? old('body') }}</textarea>
     
     <label for="visible">
-        <input type="checkbox" name="visible" id="visible">
+        <input type="checkbox" name="visible" id="visible"
+            @if (isset($comment) && $comment->visible)
+                checked="checked"
+            @endif
+        >
         Visível?
     </label>
 
