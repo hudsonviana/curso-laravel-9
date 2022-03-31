@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Listagem dos Usuários')
- 
+
 @section('content')
 <h1 class="text-2x1 font-semibold leading-tigh py-2">
     Listagem dos usuários
@@ -50,7 +50,7 @@
                 <a href="{{ route('users.show', $user->id) }}" class="bg-orange-200 hover:bg-orange-300 rounded-full py-2 px-6">Detalhes</a>
             </td>
             <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                <a href="{{ route('comments.index', $user->id) }}" class="bg-blue-200 hover:bg-blue-300 rounded-full py-2 px-6">Anotações (0)</a>
+                <a href="{{ route('comments.index', $user->id) }}" class="bg-blue-200 hover:bg-blue-300 rounded-full py-2 px-6">Anotações ({{ $user->comments->count() }})</a>
             </td>
         </tr>
         @endforeach

@@ -38,7 +38,7 @@ class StoreUpdateUserFormRequest extends FormRequest
         return $rules;
         //nullable significa que o campo não é obrigatório, mas se form preenchido deverá atender os demais requisitos de validação
 
-        //'email' => "required|email|unique:users,email,{$id},id", // essa validação garante que o usuário possa atualizar seus dados com o seu email, mas não com outro email já cadastrado no banco de dados
+        //'email' => "required|email|unique:users,email,{$id},id", // essa validação garante que o usuário possa atualizar seus dados com o seu próprio email, mas não com outro email já cadastrado no banco de dados
 
         //dd($rules, $this->method('PUT'), $id);
     }
