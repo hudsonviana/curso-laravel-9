@@ -50,7 +50,7 @@ class User extends Authenticatable
             }
         })
         ->with('comments') /* Eager loading */
-        ->get();
+        ->paginate();
 
         return $users;
     }

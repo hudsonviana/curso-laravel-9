@@ -57,4 +57,10 @@
     </tbody>
 </table>
 
+{{-- o uso do appends faz com que não se perca o search ao passar as páginas do paginate --}}
+<div class="py-4">
+    {{ $users->appends([
+        'search' => request()->get('search', '') 
+    ])->links() }}
+</div>
 @endsection
