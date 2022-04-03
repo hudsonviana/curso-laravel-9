@@ -28,7 +28,8 @@ class StoreUpdateUserFormRequest extends FormRequest
         $rules = [
             'name' => 'required|string|max:255|min:3',
             'email' => "required|email|unique:users,email,{$id},id",
-            'password' => 'required|min:6|max:15' 
+            'password' => 'required|min:6|max:15',
+            'image' => 'nullable|image|max:2048' //obs: também é possível validar as dimensões da imagem
         ];
 
         if ($this->method() == 'PUT') {
@@ -36,6 +37,7 @@ class StoreUpdateUserFormRequest extends FormRequest
         }
         
         return $rules;
+
         //nullable significa que o campo não é obrigatório, mas se form preenchido deverá atender os demais requisitos de validação
 
         //'email' => "required|email|unique:users,email,{$id},id", // essa validação garante que o usuário possa atualizar seus dados com o seu próprio email, mas não com outro email já cadastrado no banco de dados

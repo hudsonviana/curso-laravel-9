@@ -165,6 +165,7 @@ return [
         'first_name'=> 'primeiro nome',
         'gender'    => 'gênero',
         'hour'      => 'hora',
+        'image'     => 'imagem',
         'last_name' => 'sobrenome',
         'message'   => 'mensagem',
         'minute'    => 'minuto',
