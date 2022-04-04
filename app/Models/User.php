@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasUuid;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasUuid;
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +44,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // parâmetros necessários para usar UUID
+    protected $primaryKey = 'id';
+    protected $keyType = 'string';
+    public $incrementing = false;
+
+    // outras funções
     public function getUsers(string|null $search = null) {
         $users = $this->where(function ($query) use ($search) {
             if ($search) {
@@ -50,6 +57,7 @@ class User extends Authenticatable
                 $query->orWhere('name', 'LIKE', "%{$search}%");
             }
         })
+        ->orderBy('created_at', 'asc')
         ->with('comments') /* Eager loading */
         ->paginate();
 

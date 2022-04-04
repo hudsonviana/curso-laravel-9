@@ -25,6 +25,7 @@ class CommentController extends Controller
         }
         $comments = $user->comments()
             ->where('body', 'LIKE', "%{$request->search}%")
+            ->orderBy('created_at', 'asc')
             ->get();
         return view('users.comments.index', compact('user', 'comments'));
     }
